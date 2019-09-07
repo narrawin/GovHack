@@ -71,8 +71,6 @@
     ></script>
 
     <!-- GeoTIFF Support -->
-    <script src="https://unpkg.com/geotiff@0.4.1/dist/main.js"></script>
-    <script src="https://unpkg.com/plotty@0.2.0/src/plotty.js"></script>
   </head>
 
   <style>
@@ -494,10 +492,10 @@
       }
     ).addTo(mymap);
 
-    // Create GeoTIFF
-    var url = './geo.tif';
-    var options = '';
+    var imageUrl = 'geo.tif',
+    imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
+    L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
 
-    var layer = L.leafletGeotiff(url, options).addTo(map);
+    // Create GeoTIFF
   </script>
 </html>
