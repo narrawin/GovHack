@@ -69,6 +69,10 @@
       integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
       crossorigin=""
     ></script>
+
+    <!-- GeoTIFF Support -->
+    <script src="https://unpkg.com/geotiff@0.4.1/dist/main.js"></script>
+    <script src="https://unpkg.com/plotty@0.2.0/src/plotty.js"></script>
   </head>
 
   <style>
@@ -82,10 +86,10 @@
   </style>
 
   <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar sticky-top navbar-light bg-light">
       <a class="navbar-brand" href="#">
         <img
-          src=""
+          src="logo.svg"
           width="30"
           height="30"
           class="d-inline-block align-top"
@@ -97,7 +101,9 @@
 
     <div class="container mt-5">
       <div class="jumbotron">
-        <h1 class="display-4 text-center">Innovative Land Index</h1>
+        <h1 class="display-4 text-center">
+          Innovative Land Index
+        </h1>
         <p class="lead text-center">
           Redesigning the way we value and manage land.
         </p>
@@ -114,6 +120,11 @@
         <div id="mapid" class="card-body" style="height: 550px;"></div>
       </div>
 
+      <small style="font-style: italic"
+        >Disclaimer! -- This visualisation is for illustrative purposes only and
+        should not be used for reasons outlined below.</small
+      >
+
       <!-- Who is this for? -->
       <div class="card mt-4">
         <div class="card-body">
@@ -123,7 +134,7 @@
           <div class="row">
             <div class="col-12 col-md-3">
               <span class="inline">
-                <i class="fas fa-seedling"></i>
+                <i class="fas fa-seedling" style="color: #6ab04c;"></i>
                 <h5 class="who-heading">Agriculture</h5>
               </span>
             </div>
@@ -138,7 +149,7 @@
           <div class="row mt-4">
             <div class="col-12  col-md-3">
               <span class="inline">
-                <i class="fas fa-ruler-combined"></i>
+                <i class="fas fa-ruler-combined" style="color: #535c68"></i>
                 <h5 class="who-heading">Planning</h5>
               </span>
             </div>
@@ -153,7 +164,7 @@
           <div class="row mt-4">
             <div class="col-12  col-md-3">
               <span class="inline">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-users" style="color: #4834d4"></i>
                 <h5 class="who-heading">Community</h5>
               </span>
             </div>
@@ -168,29 +179,21 @@
 
       <div class="card mt-4">
         <div class="card-body">
-          <h3 class="mb-4 text-center">What is this index?</h3>
+          <h3 class="mb-4 text-center">Methology</h3>
 
-          <p></p>
+          <p>
+            Underlying theroies that influence the method/index
+          </p>
         </div>
       </div>
 
       <div class="card mt-4">
         <div class="card-body">
-          <h3 class="mb-4 text-center">
-            Why we have selected this location?
-          </h3>
-        </div>
-      </div>
+          <h3 class="mb-4 text-center">Location</h3>
 
-      <div class="card mt-4">
-        <div class="card-body">
-          <h3 class="mb-4 text-center">Why do we need this?</h3>
-        </div>
-      </div>
-
-      <div class="card mt-4">
-        <div class="card-body">
-          <h3 class="mb-4 text-center">Why is this an effective solution?</h3>
+          <p>
+            Why we selected this location
+          </p>
         </div>
       </div>
 
@@ -202,12 +205,275 @@
               >Background Information</small
             >
           </div>
+
+          <p>
+            Some information about it
+            <br />
+            Here is a list of the factors that we have used...
+          </p>
+
+          <div class="accordion" id="accordionFactors">
+
+            <!-- Logistics TODO -->
+            <div class="card">
+              <div class="card-header" id="headingLogistics">
+                <h2 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseLogistics" aria-expanded="true" aria-controls="collapseLogistics">
+                    Logistics
+                  </button>
+                </h2>
+              </div>
+          
+              <div id="collapseLogistics" class="collapse show" aria-labelledby="headingLogistics" data-parent="#accordionFactors">
+                <div class="card-body">
+                  This is some information about Logistics.
+                </div>
+              </div>
+            </div>
+            
+            <!-- Avg. Rainfall TODO -->
+            <div class="card">
+              <div class="card-header" id="headingAvgRainfall">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAvgRainfall" aria-expanded="false" aria-controls="collapseAvgRainfall">
+                    Average Rainfall
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseAvgRainfall" class="collapse" aria-labelledby="headingAvgRainfall" data-parent="#accordionFactors">
+                <div class="card-body">
+                  This is information aout avg. rainfall.
+                </div>
+              </div>
+            </div>
+            
+            <!-- AWC -->
+            <div class="card">
+              <div class="card-header" id="headingAWC">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAWC" aria-expanded="false" aria-controls="collapseAWC">
+                    Average Water Capacity
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseAWC" class="collapse" aria-labelledby="headingAWC" data-parent="#accordionFactors">
+                <div class="card-body">
+                  <h4>Avaliable Water Capacity (AWC)</h4>
+
+                  <h5>What is AWC?</h5>
+                  <p>
+                    Available Water Capacity (AWC) it the water within the soil
+                    profile available for plant use. Usually expressed as volume
+                    fraction, percentage of a depth. It is a combination of:
+                    
+                    <ul>
+                      <li>Rainfall infiltration (percentage)</li>
+                      <li>Soil storage capacity</li>
+                    </ul>
+      
+                    It ranges from
+      
+                    <ul>
+                      <li>Field capacity - maximum water retention after saturation and allowed to drain for one or two days</li>
+                      <li>Permanent Plant wilting point - plants are no longer able to extract water from the soil resulting in permanent wilting</li>
+                    </ul>
+                  </p>
+      
+                  <h5>Uses of AWC in the Index</h5>
+                  <ul>
+                    <li>To develop water budgets</li>
+                    <li>Predict susceptibility to droughts</li>
+                    <li>Irrigation system design</li>
+                    <li>Protect water resources</li>
+                    <li>Predict yields</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Soil pH -->
+            <div class="card">
+              <div class="card-header" id="headingPH">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePH" aria-expanded="false" aria-controls="collapsePH">
+                    Soil pH
+                  </button>
+                </h2>
+              </div>
+              <div id="collapsePH" class="collapse" aria-labelledby="headingPH" data-parent="#accordionFactors">
+                <div class="card-body">
+                    <h4>Soil pH</h4>
+
+                    <h5>What is Soil pH?</h5>
+                    <p>
+                      The pH (potential hydrogen) is a measure of the acidity or
+                      alkalinity with in the soil medium, which includes water, organic
+                      matter and mineral content.
+                    </p>
+                    <ul>
+                      <li>less than 7 is acidic (i.e. orange juice = pH 3)</li>
+                      <li>7 is neutral (i.e. pure water = pH 7)</li>
+                      <li>greater than 7 is alkaline (i.e. baking soda = pH 9)</li>
+                    </ul>
+                    <p>
+                      Understanding and managing soil pH is important to ensure long
+                      term sustainability of agriculture. This helps to maintain soil
+                      physical, chemical and biological properties.
+                    </p>
+        
+                    <h5>Use in the Index</h5>
+                    <p>
+                      Soil pH affects the soil’s physical, chemical and biological
+                      properties and processes, as well as plant growth. The nutrition,
+                      growth, and yields of most crops decrease where pH is low and
+                      increases as pH rises to an optimum level.
+                      <br />
+                      <small
+                        ><a href="http://soilquality.org/indicators/soil_ph.html"
+                          >Reference</a
+                        ></small
+                      >
+                    </p>
+        
+                    <h5>Crop yeild values accociated with pH</h5>
+                    <table class="table table-borderless table-hover table-sm">
+                      <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">pH</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Crop</th>
+                          <th scope="col">4.7</th>
+                          <th scope="col">5.0</th>
+                          <th scope="col">5.7</th>
+                          <th scope="col">6.8</th>
+                          <th scope="col">7.5</th>
+                        </tr>
+                      </thead>
+                      <tbody class="">
+                        <tr>
+                          <th scope="row">Corn</th>
+                          <td>34</td>
+                          <td>73</td>
+                          <td>83</td>
+                          <td>100</td>
+                          <td>85</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Wheat</th>
+                          <td>68</td>
+                          <td>78</td>
+                          <td>89</td>
+                          <td>100</td>
+                          <td>99</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Oats</th>
+                          <td>77</td>
+                          <td>93</td>
+                          <td>99</td>
+                          <td>98</td>
+                          <td>100</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Barley</th>
+                          <td>0</td>
+                          <td>23</td>
+                          <td>80</td>
+                          <td>95</td>
+                          <td>100</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Alfalfa</th>
+                          <td>2</td>
+                          <td>9</td>
+                          <td>42</td>
+                          <td>100</td>
+                          <td>100</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Soybean</th>
+                          <td>65</td>
+                          <td>79</td>
+                          <td>80</td>
+                          <td>100</td>
+                          <td>93</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Soil Electrical Conductivity -->
+            <div class="card">
+              <div class="card-header" id="headingEC">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEC" aria-expanded="false" aria-controls="collapseEC">
+                    Electrical Conductivity
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseEC" class="collapse" aria-labelledby="headingEC" data-parent="#accordionFactors">
+                <div class="card-body">
+                  This is information aout avg. rainfall.
+                </div>
+              </div>
+            </div>
+
+            <!-- Soil Organic Carbon -->
+            <div class="card">
+              <div class="card-header" id="headingOC">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOC" aria-expanded="false" aria-controls="collapseOC">
+                    Organic Carbon
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseOC" class="collapse" aria-labelledby="headingOC" data-parent="#accordionFactors">
+                <div class="card-body">
+                  This is information about organic carbon
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
       <div class="card mt-4">
         <div class="card-body">
-          <h3 class="mb-0 text-center">Future Direction</h3>
+          <h3 class="mb-4 text-center">Methods</h3>
+
+          <p>
+            For Ang
+          </p>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="mb-4 text-center">Limitations</h3>
+
+          <ul>
+            <li>
+              Further research on the level of impact for each variable, and of
+              what variables are important should be researched thoroughly by
+              industry experts.
+            </li>
+            <li>We havent accounted for any dependencies between variables.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card my-4">
+        <div class="card-body">
+          <h3 class="mb-0 text-center">Implications & Future Direction</h3>
         </div>
       </div>
     </div>
@@ -227,5 +493,11 @@
           "pk.eyJ1IjoiZGFuaWVsZmVyZ3Vzb24iLCJhIjoiY2pzeWhhYmVyMHBneTQ0cXgydXJoeDUxMCJ9.LD82Xcdk-WD3a5TMcvdwEg"
       }
     ).addTo(mymap);
+
+    // Create GeoTIFF
+    var url = './geo.tif';
+    var options = '';
+
+    var layer = L.leafletGeotiff(url, options).addTo(map);
   </script>
 </html>
