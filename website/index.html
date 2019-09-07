@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ILI</title>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/100784d1e8.js"></script>
+
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+      integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+      crossorigin=""
+    ></script>
+  </head>
+
+  <style>
+    .who-heading {
+      display: inherit;
+    }
+
+    .inline {
+      display: inline;
+    }
+  </style>
+
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img
+          src=""
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt=""
+        />
+        Innovative Land Index
+      </a>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="jumbotron">
+        <h1 class="display-4 text-center">Innovative Land Index</h1>
+        <p class="lead text-center">
+          Redesigning the way we value and manage land.
+        </p>
+        <hr class="my-4" />
+        <p>
+          This should be a place where it's a small blurb about what we're
+          trying to do, but also that this should not be used as a real index.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card mt-4">
+        <div id="mapid" class="card-body" style="height: 550px;"></div>
+      </div>
+
+      <!-- Who is this for? -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="mb-4 text-center">Who is this for?</h3>
+
+          <!-- Ag -->
+          <div class="row">
+            <div class="col-12 col-md-3">
+              <span class="inline">
+                <i class="fas fa-seedling"></i>
+                <h5 class="who-heading">Agriculture</h5>
+              </span>
+            </div>
+            <div class="col-12 col-md-8">
+              <p>
+                This is some information why it effects farmers, etc.
+              </p>
+            </div>
+          </div>
+
+          <!-- Planning -->
+          <div class="row mt-4">
+            <div class="col-12  col-md-3">
+              <span class="inline">
+                <i class="fas fa-ruler-combined"></i>
+                <h5 class="who-heading">Planning</h5>
+              </span>
+            </div>
+            <div class="col-12 col-md-8">
+              <p>
+                This is some information why it effects planners.
+              </p>
+            </div>
+          </div>
+
+          <!-- Community -->
+          <div class="row mt-4">
+            <div class="col-12  col-md-3">
+              <span class="inline">
+                <i class="fas fa-users"></i>
+                <h5 class="who-heading">Community</h5>
+              </span>
+            </div>
+            <div class="col-12 col-md-8">
+              <p>
+                This is some information on why it effects the community.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="mb-4 text-center">What is this index?</h3>
+
+          <p></p>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="mb-4 text-center">
+            Why we have selected this location?
+          </h3>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="mb-4 text-center">Why do we need this?</h3>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="mb-4 text-center">Why is this an effective solution?</h3>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="mb-0 text-center">Research</h3>
+          <div class="text-center" style="width: 100%">
+            <small class="mb-4" style="font-style: italic;"
+              >Background Information</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="mb-0 text-center">Future Direction</h3>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    var mymap = L.map("mapid").setView([-37.5622, 143.8503], 9);
+
+    L.tileLayer(
+      "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
+      {
+        attribution:
+          'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: "mapbox.streets",
+        accessToken:
+          "pk.eyJ1IjoiZGFuaWVsZmVyZ3Vzb24iLCJhIjoiY2pzeWhhYmVyMHBneTQ0cXgydXJoeDUxMCJ9.LD82Xcdk-WD3a5TMcvdwEg"
+      }
+    ).addTo(mymap);
+  </script>
+</html>
