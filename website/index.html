@@ -56,6 +56,13 @@
   .text-bold {
     font-weight: bold;
   }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+  }
 </style>
 
 <body>
@@ -159,16 +166,97 @@
         </div>
       </div>
     </div>
+
+    <!-- Why is this for? -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h3 class="mb-4 text-center">Why is this important?</h3>
+        <p>
+          With increasing populations and urban sprawl there are concerns that prime agriculture land is being overtaken
+          by urban development. This poses many problems including:
+        </p>
+        <ul>
+          <li>
+            Risks to food security as suitable land for agriculture becomes unavailable forcing agriculture into areas
+            that are less ideal.
+          </li>
+          <li>
+            When less ideal land is used for agriculture such as into areas of lower rainfall or poorer soil this
+            creates an increasing need for irregation drawing on limted and precious water supplies (groundwater and
+            rivers) as well as increased need for fertiliser inputs.
+          </li>
+          <li>
+            We believe that with future urban planning the value of agricultural land needs be better considered so that
+            locations with the best soils and rainfall are preserved as well as considering the importance of reducing
+            food miles and the distance in which the food supply needs to be transported. Likewise this type of
+            modelling can to identify the best locations for urban developments on current farmland (where needed)
+            utilising the least valuale locations for agriculture.
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div class="card mt-4">
       <div class="card-body">
         <h3 class="mb-4 text-center">Method</h3>
         <p>
-          Underlying theroies that influence the method/index
+          The ILI was created using desktop GIS in the open source program QGIS. This index model was created by
+          combining various datasets which were determined through our literature research to be important for
+          agricultural production, water saving (through the best utilisation of the land areas with the most natural
+          rainfall) and the most energy efficient distribution of food (food miles) to urban centres. The land and soil
+          attributes included:
+        </p>
+
+        <ul>
+          <li>Organic Carbon</li>
+          <li>Electrical conductivity (as this relates to soil salinity)</li>
+          <li>Soil pH (and specifically the variance of soil from the ideal 6.5 pH)</li>
+          <li>Available Water Capacity</li>
+          <li>Average Annual Rainfall</li>
+          <li>Distance to the nearest urban centre</li>
+        </ul>
+
+        <p>
+          Normalised raster layers were created for each of these datasets using Inverse Weighted Distance Interpolation
+          (IWD). The variables were combined in the final ILI model using the following equation and the raster
+          calculator tool in QGIS:
         </p>
 
         <p>
-          For further details about the exact methodology of how we calculated this index, please see the <a
-            href="http://github.com/DanielFerguson/GovHack" target="_blank" rel="noopener noreferrer">documentation.</a>
+          <img src="./images/formula.PNG" alt="ILI Formula">
+          ILI = Innovative Land Index<br>
+          C(n) = Normalised Organic Carbon<br>
+          AWC(n) = Normalised Available Water Capacity<br>
+          R(n) = Normalised Annual Rainfall<br>
+          EC(n) = Normalised Electrical Conductivity<br>
+          D(n) = Normalised Distance from Closest Major Urban Centre<br>
+          <br>
+          <br>
+        </p>
+        <br>
+
+        <p>
+          This equation was used to equally rank all the contributing variables and doing so in a way that adds the
+          values of the beneficial qualities of land for agriculture (organic carbon, rainfall and available water
+          capacity) and subtracts the values of attributes that are negative with increasing values (distance from
+          urban
+          centres and electrical conductivity/salinity).
+          This produced the ILI raster layer.
+        </p>
+
+        <p>
+          Overlaying this is a simplified version of the Planning Zones Victoria layer. This was created by grouping
+          zoning categories to the following: Agricultural Zones, Rural Living Zones, Conservation Zones and Built
+          Environment Zones (which represent everything else not covered by the other zones and therefore are urban
+          areas, housing, industrial buildings etc).
+        </p>
+
+
+        <p>
+          For further details on the procedures used in desktop GIS to produce these layers, see <a
+            href="http://github.com/DanielFerguson/GovHack" target="_blank" rel="noopener noreferrer">the
+            documentation
+            on GitHub.</a>
         </p>
       </div>
     </div>
@@ -610,6 +698,114 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-body">
+        <h3 class="mb-4 text-center">Data Sets</h3>
+        <h5>FOI - Locality Point - Vicmap Features of Interest</h5>
+        <p class="mb-0">
+          This dataset was used to locate the offical location of the major urban centres of Ballarat, Geelong, Bendigo
+          and Melbourne. Points at these locations were extracted from the dataset and used as 'hubs' for a point
+          distance analysis in desktop GIS to the 1km grid over the study area (created for this project) which measured
+          the distance of each grid point to the nearest urban centre. This provides the minimum relative 'food mile'
+          value for food produced on agricultural land throughout the study area. These distance results were then
+          interpolated using inverse distance weighting and included as a variable within the Innovated Land Index
+          (ILI).
+        </p>
+        <small>
+          <a href="http://services.land.vic.gov.au/catalogue/metadata?anzlicId=ANZVI0803003600&publicId=guest&extractionProviderId=1"
+            target="_blank" rel="noopener noreferrer">Data Set</a></small>
+        <br>
+        <br>
+
+        <h5>OpenStreetMap</h5>
+        <p class="mb-0">
+          OpenStreetMap provides the basemap in our demonstration portal of the Innovated Land Index (ILI). This API was
+          also used within desktop GIS during the analysis stage and creation of the ILI to assist in the defining of
+          the study area.
+        </p>
+        <small>
+          <a href="https://www.openstreetmap.org/#map=4/-28.15/133.28" target="_blank" rel="noopener noreferrer">Data
+            Set</a>
+        </small>
+        <br>
+        <br>
+
+        <h5>Planning scheme zones - Vicmap Planning</h5>
+        <p class="mb-0">
+          This dataset was used to understand landuse at a broad level. The dataset was examined within desktop GIS with
+          a subset of the dataset for the project study area. Land zone descriptions were reclassified into the broad
+          categories: Agriculture, Rural Living Zone, Conservation and Built Environment (ie everything else). This was
+          then overlaid over our Innovating Land Index (ILI) to examine how urban areas and the built environment are
+          currently positioned in relation to prime agricultural land.
+        </p>
+        <small>
+          <a href="http://services.land.vic.gov.au/catalogue/metadata?anzlicId=ANZVI0803002909&publicId=guest&extractionProviderId=1"
+            target="_blank" rel="noopener noreferrer">Data Set</a>
+        </small>
+        <br>
+        <br>
+
+        <h5>Victorian Land Use Information System 2016-2017</h5>
+        <p class="mb-0">
+          This layer was examined in desktop GIS for the specific project study region noting the land use
+          classifications pertaining to agriculture vs built environment. On further investigation it was decided that
+          the Victorian Planning Zoning dataset was more specific for the needs of the project at this demonstration
+          stage. However future expansion of this project would further use this dataset to look at specific types of
+          agricultural crops (eg oilseed crops, vs cereals, vs horticulture) in relation to the land characteristics
+          mapped by the Innovative Land Index (ILI) and the specific needs of these land uses.
+        </p>
+        <small>
+          <a href="http://services.land.vic.gov.au/catalogue/metadata?anzlicId=ANZVI0803005950&publicId=guest&extractionProviderId=1"
+            target="_blank" rel="noopener noreferrer">Data Set</a>
+        </small>
+        <br>
+        <br>
+
+        <h5>BOM Average annual Rainfall (Victoria)</h5>
+        <p class="mb-0">
+          The BOM Victorian rainfall grid was visualised as a raster and a subset created for the specific study area as
+          variable layer in the creation of the Innovative Land Index (ILI).
+        </p>
+        <small>
+          <a href="http://www.bom.gov.au/jsp/ncc/climate_averages/rainfall/index.jsp?period=an&area=vc#maps"
+            target="_blank" rel="noopener noreferrer">Data Set</a>
+        </small>
+        <br>
+        <br>
+
+        <h5>Soil and Landscape Grid National Soil Attribute Maps - Available Water Capacity (3" resolution) - Release 1
+        </h5>
+        <p class="mb-0">
+          The layer available water capacity 0-5cm used for this project. A clipped raster was created of this dataset
+          for the study area and included along with other complimentary datasets in the creation of the Innovative Land
+          Index (ILI).
+        </p>
+        <small>
+          <a href="https://doi.org/10.4225/08/546ED604ADD8A" target="_blank" rel="noopener noreferrer">Data Set</a>
+        </small>
+        <br>
+        <br>
+
+        <h5>Agriculture Victoria Soils API</h5>
+        <p class="mb-0">
+          The quantitative attributes of this dataset (pH top, Organic Carbon top, Electrical Conductivity top) were
+          used. These were extracted from the API to a 1km resolution grid within the project study area and
+          interpolated using inverse distance weighting to create digital soil maps for further analysis as variables
+          within our innovative land index (ILI) along with other complimentary datasets outlined.
+        </p>
+        <small>
+          <a href="https://developer.vic.gov.au/index.php?option=com_apiportal&view=apitester&usage=api&tab=tests&apiName=Agriculture%20Victoria%20Soils%20API&apiId=208f8e40-aba4-4fd3-b61b-af461170cee9&menuId=187"
+            target="_blank" rel="noopener noreferrer">Data Set</a>
+        </small>
+        <br>
+        <br>
+
+        <p>
+          For further details about the exact methodology of how we calculated this index, please see the <a
+            href="http://github.com/DanielFerguson/GovHack" target="_blank" rel="noopener noreferrer">documentation.</a>
+        </p>
       </div>
     </div>
 
