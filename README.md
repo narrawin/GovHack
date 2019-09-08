@@ -13,7 +13,7 @@ The study area was defined as area approximately 12200km2 around Ballarat. This 
 3. Ballarat is one the major urban areas in Victoria and thus draws on a food from surrounding region.
 4. Ballarat is currently forecast as one of the fastest growing urban centres in Victoria with increasing urban sprawl into farmland areas.
 
-![Figure 1](https://github.com/DanielFerguson/GovHack/readme_resources/fig-1.png)
+![Figure 1](https://github.com/DanielFerguson/GovHack/blob/master/readme_resources/fig-1.jpg)
 
 Figure 1: The study area defined (marked with red boundary)
 
@@ -24,23 +24,23 @@ Figure 1: The study area defined (marked with red boundary)
 #### To create raster format digital soil map layers of the soil attributes provided by the Agriculture Victoria Soils API (AgVIC Soils API) we generated a grid of points (as a shapefile) over the study area at 1km intervals with a CRS of 4326 and appended to their attribute table their x and y coordinates. Using the scripts provided elsewhere in the GitHub documentation for this project we then queried the AgVIC Soils API for each of the gps points in the grid all the soil attributes. This effectively attached to the point grid shapefile the various soil attributes.
 
 ####
-![Figure 2](https://github.com/DanielFerguson/GovHack/readme_resources/fig-2.png)
+![Figure 2](https://github.com/DanielFerguson/GovHack/blob/master/readme_resources/fig-2.png)
 
 Figure 2: The 1km grid generated in QGIS for the creation of digital soil maps from the AgVIC Soils API data
 
 Digital soil maps were generated using IDW interpolation (IDW tool in QGIS). This used a search radius of 100 and a cell size of 1000m with no distance weighting.
 
 This generated Raster Layers for the AgVIC API for the following soil attributes that we chose as relevant for this study:
-![Figure 3](https://github.com/DanielFerguson/GovHack/readme_resources/fig-3.png)
+![Figure 3](https://github.com/DanielFerguson/GovHack/blob/master/readme_resources/fig-3.png)
 
 Figure 3: Digital Soil Map Created of Organic Carbon (top)
 
-![Figure 4](https://github.com/DanielFerguson/GovHack/readme_resources/fig-4.png)
+![Figure 4](https://github.com/DanielFerguson/GovHack/blob/master/readme_resources/fig-4.png)
 Figure 4 Digital Soil Map Created of Electrical Conductivity (Top)
 
 For the pH attribute based on a review of the soil literature in relation to agriculture1 we determined that a pH of 6.5 was considered generally ideal for most agricultural farming land uses. Therefore or the pH (top) dataset we calculated the variance of the values from the ideal 6.5 at each datapoint in the grid. Eg. the pH ideal variance value for a location with a pH of 7.5 was calculated as 1 as would a location with a pH of 5.5. Using the same IDW method of interpolation used for the other soil attributes a raster of pH value variance from ideal was created.
 
-![Figure 5](https://github.com/DanielFerguson/GovHack/readme_resources/fig-5.png)
+![Figure 5](https://github.com/DanielFerguson/GovHack/blob/master/readme_resources/fig-5.png)
 Figure 5: Digital Soil map of Variance of pH from 6.5 pH ideal
 
 Additional rasters were created by simply clipping the available raster layers to the study area.
@@ -54,7 +54,7 @@ The final raster layer created to contribute to the ILI model was the distance o
 
 The distance of each point in our 1km grid was calculated to the nearest urban centre point using the Distance to Nearest Hub tool in QGIS. The distance value generated and appended to the attribute table of the 1km grid was then interpolated using the same IDW tool to create a &#39;food miles&#39; raster.
 
-![Figure 6](https://github.com/DanielFerguson/GovHack/readme_resources/fig-6.png)
+![Figure 6](https://github.com/DanielFerguson/GovHack/blob/master/readme_resources/fig-6.png)
 Figure 6: Distance to Nearest Urban Centre Raster (Minimum Food Miles)
 
 The ILI combines the rasters created of all these variables:
@@ -78,7 +78,7 @@ The first 3 variables (carbon, available water capacity and rainfall) were given
 
 The following is the ILI layer created in QGIS:
 
-![Figure 7](https://github.com/DanielFerguson/GovHack/readme_resources/fig-7.png)
+![Figure 7](https://github.com/DanielFerguson/GovHack/blob/master/readme_resources/fig-7.png)
 Figure 7: The Innovative Land Index Created for this Project. Values that are towards the blue green spectrum rank higher than those towards the red end of the spectrum. Higher values are locations considered of greater importance for agriculture both in terms of soil and climate properties and their relative distance to urban centres for food distribution.
 
 Additional analysis involved overlaying the Planning zone layer from Victoria
