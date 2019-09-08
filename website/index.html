@@ -44,6 +44,18 @@
     background-color: transparent;
     color: #545b62;
   }
+
+  .card-header {
+    background-color: #ececec;
+  }
+
+  .no-border {
+    border: none !important;
+  }
+
+  .text-bold {
+    font-weight: bold;
+  }
 </style>
 
 <body>
@@ -56,13 +68,16 @@
     <div class="dropdown">
       <button class="btn btn-secondary config dropdown-toggle" type="button" id="dropdownMenuButton"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-cog"></i>
+        Config <i class="fas fa-cog"></i>
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" onclick="updateVisible()">Toggle Outline</a>
         <li class="dropdown-item">
-          <input id="slide" class="mx-auto" type="range" min="0" max="1" step="0.1" value="1"
-            onchange="updateOpacity(this.value)">
+          Boundary Opacity <br> <input id="slide" class="mx-auto" type="range" min="0" max="1" step="0.1" value="1"
+            onchange="updateOpacity(img_boundaries, this.value)">
+        </li>
+        <li class="dropdown-item">
+          Index Opacity <br> <input id="slide" class="mx-auto" type="range" min="0" max="1" step="0.1" value="1"
+            onchange="updateOpacity(img_index, this.value)">
         </li>
       </div>
     </div>
@@ -105,7 +120,8 @@
           </div>
           <div class="col-12 col-md-8">
             <p>
-              This is some information why it effects farmers, etc.
+              This tool can help farmers and other agricultural decision makers in selecting land based on suitability
+              for agriculture.
             </p>
           </div>
         </div>
@@ -119,7 +135,8 @@
           </div>
           <div class="col-12 col-md-8">
             <p>
-              This is some information why it effects planners.
+              This tool can help regional and town planners to identify areas of potential high agricultural production
+              value to take into consideration when making zoning decisions in relation to urban development.
             </p>
           </div>
         </div>
@@ -133,7 +150,10 @@
           </div>
           <div class="col-12 col-md-8">
             <p>
-              This is some information on why it effects the community.
+              Population growth, urban sprawl and concerns about food security present our community with potential
+              clashes of interest over land use, particularly in the vicinity of urban areas. This tool provides
+              evidence-based recommendations for land use to assist in finding the right balance between growth and food
+              production. It could be of even greater significance if it is expanded to cover all of mainland Australia.
             </p>
           </div>
         </div>
@@ -141,7 +161,7 @@
     </div>
     <div class="card mt-4">
       <div class="card-body">
-        <h3 class="mb-4 text-center">Methology</h3>
+        <h3 class="mb-4 text-center">Method</h3>
         <p>
           Underlying theroies that influence the method/index
         </p>
@@ -150,8 +170,15 @@
     <div class="card mt-4">
       <div class="card-body">
         <h3 class="mb-4 text-center">Location</h3>
+        <p class="text-center">
+          We chose Ballarat and surrounding areas for several reasons.
+        </p>
         <p>
-          Why we selected this location
+          Our team is from Ballarat, so we have the
+          advantage of local knowledge. Ballarat is one the major urban areas in Victoria and thus draws on a food from
+          surrounding region, and the area encompasses a diverse range of soil types, and current agricultural land
+          uses. Ballarat is also currently forecast as one of the fastest growing urban centres in Victoria with
+          increasing urban sprawl into farmland areas.
         </p>
       </div>
     </div>
@@ -159,18 +186,11 @@
       <div class="card-body">
         <h3 class="mb-0 text-center">Research</h3>
         <div class="text-center" style="width: 100%">
-          <small class="mb-4" style="font-style: italic;">Background Information</small>
+          <small class="mb-4" style="font-style: italic;">&amp; Methodology</small>
         </div>
-        <p>
-          Some information about it
-
-          <br />
-          Here is a list of the factors that we have used...
-
-        </p>
         <div class="accordion" id="accordionFactors">
-          <!-- Logistics TODO -->
-          <div class="card">
+          <!-- Logistics -->
+          <div class="card no-border">
             <div class="card-header" id="headingLogistics">
               <h2 class="mb-0">
                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseLogistics"
@@ -182,12 +202,104 @@
             <div id="collapseLogistics" class="collapse show" aria-labelledby="headingLogistics"
               data-parent="#accordionFactors">
               <div class="card-body">
-                This is some information about Logistics.
+                <h5>The Impacts of Transporting Agriculture </h5>
+                <p>
+                  Moving over 80 tonnes of agricultural output throughout Australia is expensive, and distance travelled
+                  directly impacts the cost of production. Agricultural sources that are closer to point of distribution
+                  or consumption entertain a significant economic advantage. These costs also indirectly impact land
+                  values, living costs (rural and urban) and lifestyle choices.
+                </p>
+
+                <br>
+
+                <h5>Factors</h5>
+                <p>
+                  There are many factors involved with logistics, such as the health and condition of livestock
+                  travelling longer distances to point of sale (POS). Competitiveness of agriculture products decreases
+                  with distance from port or POS. Indirect costs include increased fuel costs associated with farm
+                  machinery, lifestyle (distance education, domestic shopping) and storage (silos, refrigeration).
+                </p>
+
+                <br>
+
+                <h5>Total Transport Costs - Paddock to Market/Port</h5>
+                <table class="table table-borderless table-hover table-sm">
+                  <caption>Referenced from <a
+                      href="http://www.agriculture.gov.au/SiteCollectionDocuments/ag-food/publications/transit-agriculture-exec-summary.pdf"
+                      target="_blank" rel="noopener noreferrer">Ag Vic</a></caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col">Road</th>
+                      <th scope="col">Rail</th>
+                      <th scope="col">Road CO2 (tonnes)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Beef</td>
+                      <td>$572,438,780</td>
+                      <td>$31,656,477</td>
+                      <td>244,082</td>
+                    </tr>
+                    <tr>
+                      <td>Grain</td>
+                      <td>$2,149,790,452</td>
+                      <td>$487,280,313</td>
+                      <td>862,184</td>
+                    </tr>
+                    <tr>
+                      <td>Pigs</td>
+                      <td>$29,012,052</td>
+                      <td></td>
+                      <td>11,156</td>
+                    </tr>
+                    <tr>
+                      <td>Rice</td>
+                      <td>$134,177,281</td>
+                      <td></td>
+                      <td>55,437</td>
+                    </tr>
+                    <tr>
+                      <td>Dairy</td>
+                      <td>$881,736,430</td>
+                      <td></td>
+                      <td>337,294</td>
+                    </tr>
+                    <tr>
+                      <td>Sugar</td>
+                      <td>$52,245,332</td>
+                      <td>$9,951,700</td>
+                      <td>16,174</td>
+                    </tr>
+                    <tr>
+                      <td>Sheep/Goats</td>
+                      <td>$221,773,671</td>
+                      <td></td>
+                      <td>85,883</td>
+                    </tr>
+                    <tr>
+                      <td>Cotton</td>
+                      <td>$76,914,483</td>
+                      <td>$13,259,573</td>
+                      <td>36,385</td>
+                    </tr>
+                    <tr>
+                      <td>Horticulture</td>
+                      <td>$617,806,580</td>
+                      <td></td>
+                      <td>256,295</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+                </p>
               </div>
             </div>
           </div>
-          <!-- Avg. Rainfall TODO -->
-          <div class="card">
+          <!-- Avg. Rainfall -->
+          <div class="card no-border">
             <div class="card-header" id="headingAvgRainfall">
               <h2 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
@@ -199,12 +311,37 @@
             <div id="collapseAvgRainfall" class="collapse" aria-labelledby="headingAvgRainfall"
               data-parent="#accordionFactors">
               <div class="card-body">
-                This is information aout avg. rainfall.
+                <h5>Climate Variability</h5>
+                <p class="mb-0">
+                  Farming is a risky business, when considering the weather. Rain can occur as too much, too little or
+                  at the wrong time resulting in reduced agriculture output. Urban demand for water is increasing
+                  proportionally as our cities expand, placing pressures on the reticulated infrastructure (Rivers, dams
+                  and water storages) and groundwater systems. During times of stress, such as the millennium drought,
+                  engineered solutions result in the construction of desalination plants and groundwater bore
+                  construction.
+                </p>
+                <small class="pb-6"><a href="http://agriculture.vic.gov.au/agriculture" target="_blank"
+                    rel="noopener noreferrer">Reference</a></small>
+
+                <br><br>
+
+                <h5 class="pt-6">Factors</h5>
+                <p>
+                  Agriculture is the largest consumer of water, accounting for over 52%, water supply (sewerage,
+                  drainage and domestic supply) used 42% and 5% for manufacturing industry.
+                </p>
+                <p>
+                  As the urban population continues to increase, the demand by agriculture industry to supply the needs
+                  of urban sprawl will also grow.
+                </p>
+                <p>
+                  This will impact on the designated land use, conservation of wetlands and groundwater systems2.
+                </p>
               </div>
             </div>
           </div>
           <!-- AWC -->
-          <div class="card">
+          <div class="card no-border">
             <div class="card-header" id="headingAWC">
               <h2 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAWC"
@@ -215,13 +352,11 @@
             </div>
             <div id="collapseAWC" class="collapse" aria-labelledby="headingAWC" data-parent="#accordionFactors">
               <div class="card-body">
-                <h4>Avaliable Water Capacity (AWC)</h4>
                 <h5>What is AWC?</h5>
                 <p>
                   Available Water Capacity (AWC) it the water within the soil
                   profile available for plant use. Usually expressed as volume
                   fraction, percentage of a depth. It is a combination of:
-
 
                   <ul>
                     <li>Rainfall infiltration (percentage)</li>
@@ -229,8 +364,6 @@
                   </ul>
 
                   It ranges from
-
-
                   <ul>
                     <li>Field capacity - maximum water retention after saturation and allowed to drain for one or two
                       days</li>
@@ -246,11 +379,13 @@
                   <li>Protect water resources</li>
                   <li>Predict yields</li>
                 </ul>
+                <small><a href="http://soilquality.org/indicators/available_water_capacity.html" target="_blank"
+                    rel="noopener noreferrer">SoilQuality.org</a></small>
               </div>
             </div>
           </div>
           <!-- Soil pH -->
-          <div class="card">
+          <div class="card no-border">
             <div class="card-header" id="headingPH">
               <h2 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePH"
@@ -310,7 +445,7 @@
                       <th scope="col">7.5</th>
                     </tr>
                   </thead>
-                  <tbody class="">
+                  <tbody>
                     <tr>
                       <th scope="row">Corn</th>
                       <td>34</td>
@@ -365,23 +500,74 @@
             </div>
           </div>
           <!-- Soil Electrical Conductivity -->
-          <div class="card">
+          <div class="card no-border">
             <div class="card-header" id="headingEC">
               <h2 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEC"
                   aria-expanded="false" aria-controls="collapseEC">
-                  Electrical Conductivity
+                  Electrical Conductivity (EC)
                 </button>
               </h2>
             </div>
             <div id="collapseEC" class="collapse" aria-labelledby="headingEC" data-parent="#accordionFactors">
               <div class="card-body">
-                This is information aout avg. rainfall.
+                <h5>What is Soil EC?</h5>
+                <p>
+                  All soils have salts present that provide some level of electrical conductivity (EC) that is measured
+                  in deci-siemens per meter (dS/m) . As levels of soluble salts increase in the soil, the ability of the
+                  roots zone of plants to absorb water and nutrients, decreases. Different plants tolerate varying
+                  levels of salinity. This tolerance is measured using the ‘saturated extract method’ (ECe) . A
+                  conversion factor is used to convert from EC to ECe (see table).
+                </p>
+
+                <br>
+
+                <h5>Use</h5>
+                <p>
+                  Low salinity is not necessarily preferable. Some plants (and ecosystems) prefer higher salinity
+                  levels!
+                </p>
+                <table class="table table-borderless table-hover table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">Salinity Rating</th>
+                      <th scope="col">ECe (dS/m)</th>
+                      <th scope="col">Plant / Crop</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Very Low</td>
+                      <td>&lt; 1.8</td>
+                      <td>All pastures and clovers</td>
+                    </tr>
+                    <tr>
+                      <td>Low</td>
+                      <td>1.8 - 3.8</td>
+                      <td>Most pastures, crops, legumes</td>
+                    </tr>
+                    <tr>
+                      <td>Moderate</td>
+                      <td>3.8 - 6.5</td>
+                      <td>Grass, some legumes</td>
+                    </tr>
+                    <tr>
+                      <td>High</td>
+                      <td>6.5 - 8.6</td>
+                      <td>Grass, not clovers</td>
+                    </tr>
+                    <tr>
+                      <td>Extreme</td>
+                      <td>&gt; 8.6</td>
+                      <td>Salt tolerant plants, some barley grass</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-          <!-- Soil Organic Carbon -->
-          <div class="card">
+          <!-- Soil Organic Carbon TODO -->
+          <div class="card no-border">
             <div class="card-header" id="headingOC">
               <h2 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOC"
@@ -392,37 +578,130 @@
             </div>
             <div id="collapseOC" class="collapse" aria-labelledby="headingOC" data-parent="#accordionFactors">
               <div class="card-body">
-                This is information about organic carbon
+                <h5>Total Organic Carbon</h5>
+                <p>
+                  Carbon can be stored in the soil as organic matter, (soil organic carbon-SOC) which is the
+                  decomposition of plant and animal matter, and micro-organisms. SOC is the main source of energy for
+                  soil micro-organisms<small><a href="http://soilquality.org/indicators/total_organic_carbon.html"
+                      target="_blank" rel="noopener noreferrer">1</a></small>. Increasing soil organic carbon storage in
+                  agricultural soils through changes to
+                  management may help to mitigate rising greenhouse gas emissions and sustain agricultural productivity
+                  and environmental conditions<small><a
+                      href="https://soe.environment.gov.au/theme/land/topic/soil-carbon-dynamics" target="_blank"
+                      rel="noopener noreferrer">2</a></small>.
+                </p>
+
+                <br>
+                <h5>Factors</h5>
+                <p>
+                  SOC affects plant growth as a source of energy, aids mineral uptake for plants, and influences water
+                  retention within the soil. Organic acids (e.g., oxalic acid), released during decomposition (such as
+                  manures) helps in the availability of phosphorous for plant growth. A reduction in SOC can affect soil
+                  stability, water infiltration, drainage and airflow.<small><a
+                      href="http://soilquality.org/indicators/total_organic_carbon.html" target="_blank"
+                      rel="noopener noreferrer">1</a></small>
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="card mt-4">
-      <div class="card-body">
-        <h3 class="mb-4 text-center">Methods</h3>
-        <p>
-          For Ang
-        </p>
-      </div>
-    </div>
+
     <div class="card mt-4">
       <div class="card-body">
         <h3 class="mb-4 text-center">Limitations</h3>
-        <ul>
-          <li>
-            Further research on the level of impact for each variable, and of
-            what variables are important should be researched thoroughly by
-            industry experts.
-          </li>
-          <li>We havent accounted for any dependencies between variables.</li>
-        </ul>
+        <h5>Overview</h5>
+        <p>
+          Our project was completed within the time constraints of GovHack. We identified suitable and available
+          datasets to include in our land index, but due to time limits, we only chose those datasets which we
+          considered to be most important, being soil organic carbon, pH, salinity, distance, average rainfall and
+          average soil water capacity. We were unable to obtain metadata on some of the datasets and were unable to
+          ascertain if the original data had undergone any transformation. Additionally, the datasets had to be
+          converted to raster data, which could affect the accuracy of the final calculated layer. Our team has
+          experience related to agricultural, water and soil data, but the algorithm used for the index is not based on
+          expert consensus and therefore, it should not be relied on in its current form. All variables derived from
+          source datasets were included in the calculation with equal rankings. An improved algorithm needs to be
+          developed based on additional research and the consensus of a multi-disciplinary panel of domain experts
+          including a determination of the relative ranking that different variables should play, and any additional
+          variables needed. The project is limited to the area of Ballarat and surrounds.
+        </p>
+
+        <br>
+        <h5>Future Projects Development</h5>
+        <p>
+          Innovative Land Index (ILI) has provided a more holistic approach to land valuation and consequentially will
+          influence management decisions for the future. Adopting a holistic systems approach must be the future of
+          environmental management. This method will help to ensure the sustainable use of resources such as soil
+          productivity, water management and environmental protection as urban development continues to expand.
+        </p>
+
+        <br>
+        <h5>Future Layers</h5>
+        <table class="table table-borderless table-hover table-sm">
+          <tbody>
+            <tr>
+              <td class="text-bold">Cultural</td>
+              <td>the addition of cultural aspects to land management will preserve ways of life that are spiritually,
+                and emotionally attached to the land.</td>
+            </tr>
+            <tr>
+              <td class="text-bold">Land Use</td>
+              <td>Dividing land use which recognizes different cropping regimes, animal husbandry, forestry, different
+                classes of urban sprawl, irrigation and national forests is paramount to ongoing land use management.
+                Effects erosion, infiltration, organic soil content and soil structure.</td>
+            </tr>
+            <tr>
+              <td class="text-bold">Groundwater</td>
+              <td>As surface water becomes increasingly drawn upon to meet the needs of growing population, the quantity
+                and quality of groundwater has become a growing concern. The condition of the aquifers that keep the
+                surface environment in balance must be included in land use management.</td>
+            </tr>
+            <tr>
+              <td class="text-bold">Water Catchment</td>
+              <td>As farm use becomes more intensive to better supply increasing city expansion, it is very important to
+                maintain the integrity of the supply of water to the surface water catchments and underground
+                replenishment.</td>
+            </tr>
+            <tr>
+              <td class="text-bold">Crop Values</td>
+              <td>Cropping using a ‘gut feel’ or based on economic rationalism does not allow for analyzed holistic
+                systems approach, considering such things as transport logistics, soil types and rainfall data.</td>
+            </tr>
+            <tr>
+              <td class="text-bold">Slope</td>
+              <td>Highly impacts capability of land for agriculture, it also threatens development of society,
+                urbanisation, and consequently has many different economic implications. Also related to land use, slope
+                directly affects soil erosion, land stability and water runoff/infiltration.</td>
+            </tr>
+            <tr>
+              <td class="text-bold">Clay</td>
+              <td>Adding clay to sandy top soil with a clay content less than 5% - can increase productivity by up to
+                130%. Raising the clay content changes the soil texture class, which increases the capacity for the soil
+                to store water. Soil content such as clay are import considerations when determining land use.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
       </div>
     </div>
-    <div class="card my-4">
+    <div class="card my-4 mb-6">
       <div class="card-body">
-        <h3 class="mb-0 text-center">Implications & Future Direction</h3>
+        <h3 class="text-center">Implications & Future Direction</h3>
+        <p>
+          This project was developed within tight limitations and only shows a glimpse of what would be possible taking
+          the concept further and developing it into a decision support tool for agriculture and urban planners. We
+          suggest that the following steps should be taken to achieve this. Firstly, a full literature review should be
+          conducted to search for prior work in developing models for including agricultural considerations into urban
+          planning. Secondly, a multi-disciplinary approach needs to be taken to identify additional data required and
+          to develop an algorithm or model which assigns meaningful weights to the different variable. We suggest the
+          inclusion of datasets such as slope, wetlands, transport network, processing facilities and groundwater levels
+          as a starting point for further development. There is scope for using predicted rainfall to include climate
+          change scenarios. We also envisage that the project should be extended to include all of Australia, which
+          would necessitate to federate datasets from various state jurisdictions. Widening the scope to include more
+          datasets and a larger geographic area would provide a tool for decision making at national level.
+        </p>
       </div>
     </div>
   </div>
@@ -432,35 +711,16 @@
   <script src="./bounds.js"></script>
   <script>
     // Other variables
-    var imageUrl = './img.png';
-    var imageBounds = [[-37.096165664, 143.125102747], [-38.019846669, 144.553809698]];
-    var opacity = 0.8;
-    var opacity_image = 1.0;
-    var boundaries_visible = 1;
+    var url_index = './index.png';
+    var url_boundaries = './boundaries.png';
 
-    // Styles (based on feature.properties.Code)
-    var style_agriculture = {
-      "color": "#6ab04c",
-      "weight": 1.2,
-      "opacity": opacity
-    };
-    var style_urbandev = {
-      "color": "#eb4d4b",
-      "weight": 1.2,
-      "opacity": opacity
-    };
-    var style_housing = {
-      "color": "#130f40",
-      "fill": true,
-      "fillOpacity": 0.4,
-      "weight": 1.2,
-      "opacity": 1.0
-    };
-    var style_rural = {
-      "color": "#be2edd",
-      "weight": 1.2,
-      "opacity": opacity
-    };
+    var boundaries = [[-37.096165664, 143.125102747], [-38.019846669, 144.553809698]];
+
+    var opacity_boundaries = 0.8;
+    var opacity_index = 1.0;
+
+    var visibility_boundaries = 1;
+    var visibility_index = 1;
 
     // Load the map
     var mymap = L.map('mapid').setView([-37.5622, 143.8503], 9);
@@ -474,50 +734,13 @@
       accessToken: 'pk.eyJ1IjoiZGFuaWVsZmVyZ3Vzb24iLCJhIjoiY2pzeWhhYmVyMHBneTQ0cXgydXJoeDUxMCJ9.LD82Xcdk-WD3a5TMcvdwEg'
     }).addTo(mymap);
 
-    var image = L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
-    // L.imageOverlay(imageUrl, imageBounds).bringToFront();
-
-    // Set the style for the GeoJSON features
-    var tile = L.geoJSON(boundaries, {
-      style: function (feature) {
-        switch (feature.properties.Code) {
-          case 1:
-            return style_agriculture;
-            break;
-
-          case 2:
-            return style_urbandev;
-            break;
-
-          case 3:
-            return style_housing;
-            break;
-
-          case 4:
-            return style_agriculture;
-            break;
-        }
-      }
-    }).addTo(mymap);
-
+    var img_index = L.imageOverlay(url_index, boundaries).addTo(mymap);
+    var img_boundaries = L.imageOverlay(url_boundaries, boundaries).addTo(mymap);
 
     // Update the opacity of the index image
-    function updateOpacity(val) {
-      image.setStyle({ opacity: val });
+    function updateOpacity(layer, val) {
+      layer.setStyle({ opacity: val });
     }
-
-    // Update the visibility of the boundaries
-    function updateVisible() {
-      if (boundaries_visible) {
-        mymap.removeLayer(tile);
-        boundaries_visible = 0;
-
-      } else {
-        mymap.addLayer(tile);
-        boundaries_visible = 1;
-      }
-    }
-
 
   </script>
 </body>
